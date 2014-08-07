@@ -3,6 +3,7 @@ module NiceCommits
     def initialize(git, options)
       @git = git
       @since = options.since
+      @count = options.count
     end
 
     def each(&block)
@@ -12,7 +13,7 @@ module NiceCommits
     private
 
     def log
-      @git.log.since(@since)
+      @git.log(@count).since(@since)
     end
   end
 end
