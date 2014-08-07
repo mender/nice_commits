@@ -14,7 +14,7 @@ module NiceCommits
       \(([^)\n:]+)\)             # scope of changes
       :[[:blank:]]+
       ([^\n]{5,})                # subject
-      (?:\n\n([^\n]+(?:.*\n)+))? # body not necessary
+      (?:\n\n([^\n]+(?:.|\n)*))? # body not necessary
     \Z/x
     MERGE = /\AMerge (?:branch|pull request)/
 

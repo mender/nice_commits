@@ -43,6 +43,11 @@ Long commit description with list of changed files:
       it { expect(subject.valid?).to be true }
     end
 
+    context 'for message with body without ending carriage return' do
+      let(:message) { %Q{refactor(subscriptions): fix feature envy in sender\n\nCommit description\n\nissue} }
+      it { expect(subject.valid?).to be true }
+    end
+
     context 'for emty message' do
       let(:message) { '' }
       it { expect(subject.valid?).to be false }
@@ -53,11 +58,6 @@ Long commit description with list of changed files:
 refactor(subscriptions): fix feature envy in sender
 Commit description
       MESSAGE
-      it { expect(subject.valid?).to be false }
-    end
-
-    context 'for message with body without ending carriage return' do
-      let(:message) { %Q{refactor(subscriptions): fix feature envy in sender\n\nCommit description} }
       it { expect(subject.valid?).to be false }
     end
 
